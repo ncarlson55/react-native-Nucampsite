@@ -17,8 +17,7 @@ import { Icon } from 'react-native-elements';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
 import { createAppContainer } from 'react-navigation';
-import { styleSheets } from 'min-document';
-import { SafeAreaView } from 'react-native-safe-area-view';
+import SafeAreaView from 'react-native-safe-area-view';
 
 const DirectoryNavigator = createStackNavigator(
   {
@@ -56,7 +55,7 @@ const HomeNavigator = createStackNavigator(
     Home: { screen: Home },
   },
   {
-    defaultNavigationOptions: {
+    defaultNavigationOptions: ({ navigation }) => ({
       headerStyle: {
         backgroundColor: '#5637DD',
       },
@@ -72,7 +71,7 @@ const HomeNavigator = createStackNavigator(
           onPress={() => navigation.toggleDrawer()}
         />
       ),
-    },
+    }),
   }
 );
 
@@ -81,7 +80,7 @@ const AboutNavigator = createStackNavigator(
     About: { screen: About },
   },
   {
-    navigationOptions: {
+    DefaultNavigationOptions: ({ navigation }) => ({
       headerStyle: {
         backgroundColor: '#5637DD',
       },
@@ -97,7 +96,7 @@ const AboutNavigator = createStackNavigator(
           onPress={() => navigation.toggleDrawer()}
         />
       ),
-    },
+    }),
   }
 );
 
@@ -106,7 +105,7 @@ const ContactNavigator = createStackNavigator(
     Contact: { screen: Contact },
   },
   {
-    navigationOptions: {
+    defaultNavigationOptions: ({ navigation }) => ({
       headerStyle: {
         backgroundColor: '#5637DD',
       },
@@ -122,7 +121,7 @@ const ContactNavigator = createStackNavigator(
           onPress={() => navigation.toggleDrawer()}
         />
       ),
-    },
+    }),
   }
 );
 
