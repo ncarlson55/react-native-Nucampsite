@@ -11,6 +11,7 @@ import {
 import { Picker } from '@react-native-picker/picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import * as Animatable from 'react-native-animatable';
+import { Alert } from 'react-native';
 
 class Reservation extends Component {
   constructor(props) {
@@ -36,6 +37,29 @@ class Reservation extends Component {
   handleReservation() {
     console.log(JSON.stringify(this.state));
     this.toggleModal();
+    Alert.alert(
+      'Begin Search?',
+      `Number of Campters: ${this.state.campers}
+      \nHike-In?: ${this.state.hikeIn}
+      \nDate: ${this.state.date}`,
+      [
+        {
+          text: 'Cancel',
+          onPress: () => {
+            console.log('Cancel Pressed');
+            this.resetForm();
+          },
+        },
+        {
+          text: 'OK',
+          onPress: () => {
+            console.log('OK Pressed');
+            this.resetForm();
+          },
+        },
+      ],
+      { cancelable: false }
+    );
   }
 
   resetForm() {
@@ -108,7 +132,7 @@ class Reservation extends Component {
               accessibilityLabel="Tap me to search for available campsites to reserve"
             />
           </View>
-          <Modal
+          {/* <Modal
             animationType={'slide'}
             transparent={false}
             visible={this.state.showModal}
@@ -136,7 +160,7 @@ class Reservation extends Component {
                 title="Close"
               />
             </View>
-          </Modal>
+          </Modal> */}
         </Animatable.View>
       </ScrollView>
     );
